@@ -1,9 +1,8 @@
 "use strict";
 
-const CustomError = require("./CustomError");
+const AppError = require("./AppError");
 
 const devError = (error, res) => {
-
     res.status(error.statusCode).json({
         status: error.status,
         message: error.message,
@@ -31,16 +30,16 @@ const prodError = (error, res) => {
 
 const duplicateKeyErrorHandler = (error) => {
     const errMsg = `The ${(Object.keys(error.keyValue))[0]} '${(Object.values((error.keyValue)))[0]}' already exists`
-    return new CustomError(errMsg, 400);
+    return new AppError(errMsg, 400);
 }
 
 const validationErrorHandler = (error) => {
     const errMsg = `${(Object.keys(error.errors))[0]} is required!`;
-    return new CustomError(errMsg, 400);
+    return new AppError(errMsg, 400);
 }
 
 const tokenExpiredErrorHandler = (error) => {
-    return new CustomError("Please login", 401);
+    return new AppError("Please login", 401);
 }
 
 module.exports = (error, req, res, next) => {

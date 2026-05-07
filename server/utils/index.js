@@ -1,7 +1,11 @@
-const AppError = require('./AppError'); // Make sure the filename matches!
-const asyncErrorHandler = require('./asyncErrorHandler');
+const AppError = require('./AppError'),
+    asyncErrorHandler = require('./asyncErrorHandler'),
+    errorHandler = require('./errorHandler');
+
+
 
 module.exports = {
     AppError,
-    asyncErrorHandler
+    asyncErrorHandler,
+    errorHandler
 };

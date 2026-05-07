@@ -9,11 +9,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "lumina-utils": "file:../../utils",
     "mongoose": "^9.6.1",
-    "utils": "file:../../utils"
+    "utils": "file:../../utils",
+    "validator": "^13.15.35"
   }
 }

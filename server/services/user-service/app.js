@@ -1,7 +1,8 @@
 const express = require('express'),
     mongoose = require('mongoose'),
     dotenv = require('dotenv'),
-    cors = require('cors');
+    cors = require('cors'),
+    {errorHandler} = require('lumina-utils');
 
 // Load Environment Variables
 
@@ -21,6 +22,9 @@ const authRouter = require(`${__dirname}/src/routes/authRoutes`);
 
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/auth', authRouter);
+
+// Global Error Handler
+app.use(errorHandler);
 
 
 module.exports = app;
