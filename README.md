@@ -44,7 +44,7 @@ graph TD
 
 ### 👤 User Service
 - **Responsibility:** User registration, authentication (JWT/OAuth2), and profile management.
-- **Tech:** Node.js / Go, PostgreSQL/MongoDB.
+- **Tech:** Node.js, MongoDB.
 
 ### 📦 Product Catalog Service
 - **Responsibility:** Manages product listings, categories, inventory levels, and search.

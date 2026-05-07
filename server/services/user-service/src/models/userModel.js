@@ -25,6 +25,14 @@ const userSchema = Schema({
         lowercase: true,
         validate: [validator.isEmail, 'Please provide a valid email']
     },
+    gender: {
+        type: String,
+        enum: ['male', 'female'],
+        required: [true, 'Please provide your gender!'],
+        trim: true
+    },
+    photo: String,
+
     role: {
         type: String,
         enum: ['user', 'admin'],
@@ -79,20 +87,20 @@ userSchema.pre('save', function () {
 });
 
 // Instance Method: Check if password is correct
-// userSchema.methods.correctPassword = async function (candidatePassword, userPassword) {
-//     return await bcrypt.compare(candidatePassword, userPassword);
-// };
+userSchema.methods.correctPassword = async function (candidatePassword, userPassword) {
+    return await bcrypt.compare(candidatePassword, userPassword);
+};
 
-// // Instance Method: Check if user changed password after the token was issued
-// userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
-//     if (this.passwordChangedAt) {
-//         const changedTimestamp = parseInt(this.passwordChangedAt.getTime() / 1000, 10);
-//         return JWTTimestamp < changedTimestamp;
-//     }
+// Instance Method: Check if user changed password after the token was issued
+userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
+    if (this.passwordChangedAt) {
+        const changedTimestamp = parseInt(this.passwordChangedAt.getTime() / 1000, 10);
+        return JWTTimestamp < changedTimestamp;
+    }
 
-    // False means NOT changed
-//     return false;
-// };
+    //False means NOT changed
+    return false;
+};
 
 
 // Create Model
